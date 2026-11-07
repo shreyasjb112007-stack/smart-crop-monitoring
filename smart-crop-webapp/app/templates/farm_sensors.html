@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('farm_detail', farm_id=farm.Farm_ID) }}" style="font-size:13px;">&larr; Back to {{ farm.Location }}</a>
+<h1>Live Sensor Dashboard — {{ farm.Location }}</h1>
+
+{% if not da3_available %}
+<div class="card empty-state">
+    Sensor database isn't connected yet. Once the Raspberry Pi is set up and
+    <code>sensor_reader.py</code> is running, live readings will appear here.
+</div>
+{% else %}
+
+{% if alerts %}
+<div class="card" style="border-left:4px solid #b23131;">
+    <h2 style="color:#b23131;">⚠️ Alerts</h2>
+    {% for a in alerts %}
+    <p>{{ a.sensor_type }} is currently <strong>{{ a.value }}</strong>
+       (expected between {{ a.min_value }} and {{ a.max_value }}) — last reading {{ a.recorded_at }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="card">
+    <h2>Current Readings</h2>
+    {% if latest %}
+    <table>
+        <tr><th>Sensor</th><th>Value</th><th>Last Updated</th></tr>
+        {% for r in latest %}
+        <tr>
+            <td>{{ r.sensor_type }}</td>
+            <td>{{ r.value }}{{ r.unit }}</td>
+            <td>{{ r.recorded_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty-state">No sensor readings yet. Once the Pi starts sending data, it'll show up here.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h2>Soil Moisture — Last 24 Hours (hourly average)</h2>
+    {% if trend %}
+    <table>
+        <tr><th>Hour</th><th>Avg Moisture</th></tr>
+        {% for t in trend %}
+        <tr><td>{{ t.bucket }}</td><td>{{ t.avg_value }}%</td></tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty-state">Not enough data yet to show a trend.</p>
+    {% endif %}
+</div>
+
+{% endif %}
+{% endblock %}

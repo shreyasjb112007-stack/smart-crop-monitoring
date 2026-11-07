@@ -1,0 +1,7 @@
+﻿             List of relations
+ Schema |      Name       | Type  |  Owner  
+--------+-----------------+-------+---------
+ public | sensorreading   | table | cropapp
+ public | sensorthreshold | table | cropapp
+(2 rows)
+

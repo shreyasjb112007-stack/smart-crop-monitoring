@@ -1,0 +1,16 @@
+﻿StatusCode        : 200
+StatusDescription : OK
+RawContentLength  : 3343
+Headers:
+
+Key            Value                        
+---            -----                        
+Vary           Cookie                       
+Connection     close                        
+Content-Length 3343                         
+Content-Type   text/html; charset=utf-8     
+Date           Tue, 20 Oct 2026 17:07:51 GMT
+Server         Werkzeug/3.1.8 Python/3.12.10
+
+
+

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('dashboard') }}" style="font-size:13px;">&larr; Back to Dashboard</a>
+<h1>{{ farm.Location }}</h1>
+<p style="color:#666;">Area: {{ farm.Area }} acres</p>
+
+<a href="{{ url_for('new_crop', farm_id=farm.Farm_ID) }}" class="btn">+ Add Crop</a>
+<a href="{{ url_for('farm_sensors', farm_id=farm.Farm_ID) }}" class="btn btn-secondary">📡 Sensor Dashboard</a>
+
+<div class="card">
+    <h2>Crops on this Farm</h2>
+    {% if crops %}
+    <table>
+        <tr><th>Crop</th><th>Variety</th><th>Planted On</th><th></th></tr>
+        {% for crop in crops %}
+        <tr>
+            <td>{{ crop.Crop_Name }}</td>
+            <td>{{ crop.Variety or "—" }}</td>
+            <td>{{ crop.Planting_Date }}</td>
+            <td>
+                <a href="{{ url_for('diagnose', crop_id=crop.Crop_ID) }}">Diagnose</a> ·
+                <a href="{{ url_for('crop_history', crop_id=crop.Crop_ID) }}">History</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty-state">No crops added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

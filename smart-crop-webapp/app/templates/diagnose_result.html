@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Diagnosis Result — {{ crop.Crop_Name }}</h1>
+
+<div class="card">
+    <img src="{{ url_for('static', filename=image_path) }}" style="max-width:250px;border-radius:8px;float:right;margin-left:20px;">
+    <h2>{{ entity.disease_name }}</h2>
+    <p>
+        <span class="badge {{ entity.severity }}">{{ entity.severity }}</span>
+        &nbsp; Similarity: <strong>{{ similarity }}%</strong>
+    </p>
+    <p><strong>Detected Crop:</strong> {{ entity.crop_name }}</p>
+
+    {% if treatment %}
+    <h2 style="margin-top:20px;">Recommended Treatment</h2>
+    <p><strong>{{ treatment.Treatment_Name }}</strong></p>
+    <p style="color:#666;">Dosage / Instructions: {{ treatment.Dosage }}</p>
+    {% else %}
+    <p class="empty-state">No treatment record found in the database for this match.</p>
+    {% endif %}
+</div>
+
+<a href="{{ url_for('crop_history', crop_id=crop.Crop_ID) }}" class="btn">View Full History</a>
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

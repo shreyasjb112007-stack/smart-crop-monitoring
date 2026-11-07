@@ -1,0 +1,11 @@
+﻿+-----------------------+
+| Tables_in_smartcropdb |
++-----------------------+
+| crop                  |
+| diagnosis             |
+| disease               |
+| farm                  |
+| farmer                |
+| image                 |
+| treatment             |
++-----------------------+

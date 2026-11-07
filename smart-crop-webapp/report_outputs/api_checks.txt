@@ -1,0 +1,13 @@
+=== POST /api/sensor-reading (NO API KEY) ===
+Status Code: 401
+Response Body: {
+  "error": "invalid or missing API key"
+}
+
+
+=== POST /api/sensor-reading (WITH API KEY) ===
+Status Code: 200
+Response Body: {
+  "status": "ok"
+}
+

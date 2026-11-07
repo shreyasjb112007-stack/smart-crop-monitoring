@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Your Farms</h1>
+<a href="{{ url_for('new_farm') }}" class="btn">+ Add New Farm</a>
+
+{% if not farms %}
+    <div class="card empty-state">No farms yet. Add your first farm to get started.</div>
+{% endif %}
+
+{% for farm in farms %}
+<div class="card">
+    <h2><a href="{{ url_for('farm_detail', farm_id=farm.Farm_ID) }}" style="color:#2f6e3f;">{{ farm.Location }}</a></h2>
+    <p style="font-size:13px;color:#666;">Area: {{ farm.Area }} acres</p>
+
+    {% if farm.crops %}
+        {% for crop in farm.crops %}
+        <div class="crop-item">
+            <strong>{{ crop.Crop_Name }}</strong> ({{ crop.Variety or "—" }}) — planted {{ crop.Planting_Date }}
+            <a href="{{ url_for('diagnose', crop_id=crop.Crop_ID) }}" class="btn" style="padding:5px 12px;font-size:12px;margin-top:0;">📷 Diagnose</a>
+            <a href="{{ url_for('crop_history', crop_id=crop.Crop_ID) }}" class="btn btn-secondary" style="padding:5px 12px;font-size:12px;margin-top:0;">History</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-state">No crops planted here yet.</p>
+    {% endif %}
+    <a href="{{ url_for('new_crop', farm_id=farm.Farm_ID) }}" class="btn btn-secondary" style="margin-top:14px;">+ Add Crop</a>
+</div>
+{% endfor %}
+{% endblock %}

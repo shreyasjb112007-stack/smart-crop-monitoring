@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Milvus Lite embedded database (auto-recreated + reseeded on first run)
+crop_disease.db/
+
+# Synthetic reference dataset (auto-regenerated on first run)
+reference_dataset/
+
+# User-uploaded diagnosis photos
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+.DS_Store

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="max-width:480px;">
+    <h1>Diagnose: {{ crop.Crop_Name }}</h1>
+    <p style="color:#666;font-size:14px;">Upload a photo of the leaf. It will be compared against known
+        crop-disease images using AI (image embeddings + vector similarity search).</p>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Leaf Photo</label>
+        <input type="file" name="photo" accept="image/*" required>
+        <button type="submit">🔍 Analyze</button>
+    </form>
+</div>
+{% endblock %}

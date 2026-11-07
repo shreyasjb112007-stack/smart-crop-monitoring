@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reports</h1>
+
+<div class="card">
+    <h2>Disease Report</h2>
+    {% if disease_rows %}
+    <table>
+        <tr><th>Farm</th><th>Crop</th><th>Disease</th><th>Severity</th><th>Similarity</th><th>Date</th></tr>
+        {% for r in disease_rows %}
+        <tr>
+            <td>{{ r.Farm_Location }}</td>
+            <td>{{ r.Crop_Name }}</td>
+            <td>{{ r.Disease_Name }}</td>
+            <td><span class="badge {{ r.Severity }}">{{ r.Severity }}</span></td>
+            <td>{{ r.Similarity_Score }}%</td>
+            <td>{{ r.Diagnosed_On }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p style="margin-top:12px;font-size:13px;color:#666;">
+        Severity breakdown — Low: {{ severity_tally.Low_Count }},
+        Moderate: {{ severity_tally.Moderate_Count }},
+        High: {{ severity_tally.High_Count }}
+    </p>
+    {% else %}
+    <p class="empty-state">No diagnoses recorded yet.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h2>Crop Statistics</h2>
+    {% if crop_stats %}
+    <table>
+        <tr><th>Crop</th><th>Variety</th><th>Planted</th><th>Inspections</th><th>Diseased</th><th>Last Diagnosis</th></tr>
+        {% for c in crop_stats %}
+        <tr>
+            <td>{{ c.Crop_Name }}</td>
+            <td>{{ c.Variety or "—" }}</td>
+            <td>{{ c.Planting_Date }}</td>
+            <td>{{ c.Total_Inspections }}</td>
+            <td>{{ c.Diseased_Inspections }}</td>
+            <td>{{ c.Last_Diagnosis_Date or "—" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty-state">No crops added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

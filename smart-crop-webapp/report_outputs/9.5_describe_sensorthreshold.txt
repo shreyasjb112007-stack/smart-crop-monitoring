@@ -1,0 +1,10 @@
+﻿                    Table "public.sensorthreshold"
+   Column    |         Type          | Collation | Nullable | Default 
+-------------+-----------------------+-----------+----------+---------
+ farm_id     | integer               |           | not null | 
+ sensor_type | character varying(20) |           | not null | 
+ min_value   | numeric(6,2)          |           |          | 
+ max_value   | numeric(6,2)          |           |          | 
+Indexes:
+    "sensorthreshold_pkey" PRIMARY KEY, btree (farm_id, sensor_type)
+

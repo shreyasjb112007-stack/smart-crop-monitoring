@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('dashboard') }}" style="font-size:13px;">&larr; Back to Dashboard</a>
+<h1>Inspection History — {{ crop.Crop_Name }}</h1>
+<a href="{{ url_for('diagnose', crop_id=crop.Crop_ID) }}" class="btn">+ New Diagnosis</a>
+
+<div class="card">
+    {% if history %}
+    <table>
+        <tr><th>Date</th><th>Image</th><th>Disease</th><th>Severity</th><th>Similarity</th></tr>
+        {% for row in history %}
+        <tr>
+            <td>{{ row.Capture_Date }}</td>
+            <td><img src="{{ url_for('static', filename=row.Image_Path) }}" style="width:60px;border-radius:4px;"></td>
+            <td>{{ row.Disease_Name or "—" }}</td>
+            <td>{% if row.Severity %}<span class="badge {{ row.Severity }}">{{ row.Severity }}</span>{% else %}—{% endif %}</td>
+            <td>{{ row.Similarity_Score }}{% if row.Similarity_Score %}%{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty-state">No inspections recorded yet for this crop.</p>
+    {% endif %}
+</div>
+{% endblock %}

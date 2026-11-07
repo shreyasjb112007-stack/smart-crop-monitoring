@@ -1,0 +1,10 @@
+Flask
+PyMySQL
+Werkzeug
+pymilvus
+milvus-lite
+torch
+torchvision
+pillow
+numpy
+psycopg2-binary

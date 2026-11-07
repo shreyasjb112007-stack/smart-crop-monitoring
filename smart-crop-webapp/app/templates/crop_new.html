@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="max-width:420px;">
+    <h1>Add a Crop</h1>
+    <form method="POST">
+        <input type="hidden" name="farm_id" value="{{ farm_id }}">
+        <label>Crop Name</label>
+        <input type="text" name="crop_name" placeholder="e.g. Tomato" required>
+        <label>Variety (optional)</label>
+        <input type="text" name="variety" placeholder="e.g. Roma">
+        <label>Planting Date</label>
+        <input type="date" name="planting_date">
+        <button type="submit">Save Crop</button>
+    </form>
+</div>
+{% endblock %}

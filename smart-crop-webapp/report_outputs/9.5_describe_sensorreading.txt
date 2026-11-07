@@ -1,0 +1,13 @@
+﻿                                           Table "public.sensorreading"
+   Column    |           Type           | Collation | Nullable |                      Default                      
+-------------+--------------------------+-----------+----------+---------------------------------------------------
+ reading_id  | bigint                   |           | not null | nextval('sensorreading_reading_id_seq'::regclass)
+ farm_id     | integer                  |           | not null | 
+ sensor_type | character varying(20)    |           | not null | 
+ value       | numeric(6,2)             |           | not null | 
+ unit        | character varying(10)    |           | not null | 
+ recorded_at | timestamp with time zone |           | not null | now()
+Indexes:
+    "sensorreading_pkey" PRIMARY KEY, btree (reading_id, recorded_at)
+    "idx_sensor_farm_time" btree (farm_id, sensor_type, recorded_at DESC)
+

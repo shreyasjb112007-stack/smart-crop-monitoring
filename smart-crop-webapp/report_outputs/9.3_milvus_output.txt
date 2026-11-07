@@ -1,0 +1,21 @@
+﻿=================================================================
+MILVUS LITE - CROP DISEASE VECTOR DATABASE
+=================================================================
+Database File    : crop_disease.db
+Collection Name  : CropDiseaseImages
+Index Type       : AUTOINDEX
+Metric Type      : COSINE
+Vector Dimension : 512 (ResNet18)
+Stored Vectors   : 1
+-----------------------------------------------------------------
+COLLECTION SCHEMA FIELDS:
+  - image_id         : 5 [PRIMARY KEY]
+  - crop_name        : 21
+  - disease_name     : 21
+  - severity         : 21
+  - treatment        : 21
+  - image_path       : 21
+  - embedding        : 101
+=================================================================
+Status: Collection created, indexed, loaded, and ready for queries.
+=================================================================
